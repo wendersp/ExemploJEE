@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/layout.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <ui:define name="content">
+        <h1>Cidade</h1>
+        <h:form>    
+            <h:panelGrid columns="3" cellpadding="0" cellspacing="5">
+                <h:commandLink value="Voltar" action="CidadeCons?faces-redirect=true" immediate="true"/>                
+            </h:panelGrid>
+            <br/>
+            <h:messages/>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Nome" />
+                <h:inputText id="iTxtNome" size="50" maxlength="50" value="#{cidadeMB.cidade.nome}"/>
+                <h:outputLabel value="Estado" />
+                <h:selectOneMenu id="sMnEstado" value="#{cidadeMB.cidade.estado}" converter="estadoConverter">                    
+                    <f:selectItems value="#{cidadeMB.lstEstado}" var="estado" itemLabel="#{estado.nome}" itemValue="#{estado}" />                    
+                </h:selectOneMenu>
+            </h:panelGrid>
+            <br/>
+            <h:panelGrid columns="1">
+                <h:commandButton value="Salvar" action="#{cidadeMB.salvar}"/>                
+            </h:panelGrid>
+
+        </h:form>        
+    </ui:define>
+
+</ui:composition>

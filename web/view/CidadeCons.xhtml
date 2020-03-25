@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/layout.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">        
+        <h:form>
+            <h1>Pesquisar Cidade</h1>
+            <h:panelGrid columns="2">
+                <h:commandLink value="Novo" action="#{cidadeMB.novo()}"/>
+            </h:panelGrid>
+            <br/>
+            <h:messages/>
+            <h:panelGrid columns="3">
+                <h:outputLabel value="Nome: "/>
+                <h:inputText id="iTxtParametro" size="50" value="#{cidadeMB.valorPesquisa}"/>
+                <h:commandButton id="cBntPesquisar" value="Pesquisar" action="#{cidadeMB.pesquiar()}" />
+            </h:panelGrid>
+            <br/>
+            <h:panelGrid columns="1">                
+                <h:dataTable id="dTableCidade" border="1" rows="10" 
+                             value="#{cidadeMB.lstCidade}" var="cidade"
+                             styleClass="my-table"
+                             headerClass="my-table-header"
+                             rowClasses="my-table-odd-row,my-table-even-row">
+                    <h:column >
+                        <f:facet name="header" >
+                            <h:outputText value="Id" />
+                        </f:facet>
+                        <h:outputText value="#{cidade.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nome" />
+                        </f:facet>
+                        <h:outputText value="#{cidade.nome}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Estado" />
+                        </f:facet>
+                        <h:outputText value="#{cidade.estado.sigla}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Data Cadastro" />
+                        </f:facet>
+                        <h:outputText value="#{cidade.estado.dataCadastro}">
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Data Atualização" />
+                        </f:facet>
+                        <h:outputText value="#{cidade.estado.dataAlteracao}"> 
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Ações" />
+                        </f:facet>
+                        <h:commandButton value="Editar" action="#{cidadeMB.editar}" >
+                            <f:setPropertyActionListener value="#{cidade}" target="#{cidadeMB.cidade}"/>
+                        </h:commandButton>
+                    </h:column>
+                </h:dataTable> 
+            </h:panelGrid>
+
+        </h:form>        
+    </ui:define>
+
+</ui:composition>

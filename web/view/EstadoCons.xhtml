@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/layout.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">        
+        <h:form>
+            <h1>Pesquisar Estado</h1>
+            <h:panelGrid columns="2">
+                <h:commandLink value="Novo" action="#{estadoMB.novo()}" immediate="true"/>
+            </h:panelGrid>
+            <br/>
+            <h:messages/>
+            <h:panelGrid columns="3">                
+                <h:outputLabel value="Nome: "/>
+                <h:inputText id="iTxtParametro" size="50" value="#{estadoMB.valorPesquisa}"/>
+                <h:commandButton id="cBntPesquisar" value="Pesquisar" action="#{estadoMB.pesquiar()}" />
+            </h:panelGrid>
+            <br/>
+            <h:panelGrid columns="1">                
+                <h:dataTable id="dTableEstado" border="1" rows="10" 
+                             value="#{estadoMB.lstEstado}" var="estado"
+                             styleClass="my-table"
+                             headerClass="my-table-header"
+                             rowClasses="my-table-odd-row,my-table-even-row">
+                    <h:column >
+                        <f:facet name="header" >
+                            <h:outputText value="Id" />
+                        </f:facet>
+                        <h:outputText value="#{estado.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nome" />
+                        </f:facet>
+                        <h:outputText value="#{estado.nome}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Sigla" />
+                        </f:facet>
+                        <h:outputText value="#{estado.sigla}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Data Cadastro" />
+                        </f:facet>
+                        <h:outputText value="#{estado.dataCadastro}">
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Data Atualização" />
+                        </f:facet>
+                        <h:outputText value="#{estado.dataAlteracao}"> 
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Ações" />                            
+                        </f:facet>
+                        <h:commandButton id="cBtnEditar" value="Editar" action="#{estadoMB.editar}" >
+                            <f:setPropertyActionListener value="#{estado}" target="#{estadoMB.estado}"/>
+                        </h:commandButton>
+                        <h:commandButton id="cBtnExcluir" value="Excluir" action="#{estadoMB.excluir}" onclick="return confirm('Confirma ?');" >                           
+                            <f:setPropertyActionListener value="#{estado}" target="#{estadoMB.estado}"/>                           
+                        </h:commandButton>   
+                    </h:column>
+                </h:dataTable> 
+            </h:panelGrid>
+
+        </h:form>        
+    </ui:define>
+
+</ui:composition>
