@@ -15,7 +15,7 @@ import model.entidades.Estado;
  */
 @Remote
 public interface EstadoFacadeRemoto {
-
+    
     public void excluir(Estado estado);
 
     public List<Estado> listarTodos();

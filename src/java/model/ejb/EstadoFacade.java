@@ -14,8 +14,7 @@ import model.entidades.Estado;
  * @author wender
  */
 @Stateless
-public class EstadoFacade extends AbstractFacade<Estado> 
-        implements EstadoFacadeRemoto {
+public class EstadoFacade extends AbstractFacade<Estado> implements EstadoFacadeRemoto {
 
     @PersistenceContext(unitName = "ExemploJEEPU")
     private EntityManager em;
@@ -56,7 +55,7 @@ public class EstadoFacade extends AbstractFacade<Estado>
         List<Estado> lstEstado;
         Query consulta = em.createNamedQuery("Estado.findByNome");
         consulta.setParameter("nome", param + "%");
-        lstEstado = consulta.getResultList();
+        lstEstado = consulta.getResultList();        
         return lstEstado;
     }
 

@@ -16,10 +16,11 @@ import model.entidades.Estado;
  */
 @Named(value = "estadoMB")
 @SessionScoped
-public class EstadoMBean implements Serializable{
+public class EstadoMBean implements Serializable {
     
     @EJB
     private EstadoFacadeRemoto estadoEJB;
+    
     private Estado estado;
     private List<Estado> lstEstado;    
     private String valorPesquisa;  
@@ -38,7 +39,7 @@ public class EstadoMBean implements Serializable{
     
     public void salvar() {                
         estadoEJB.salvar(estado);  
-        estado = estadoEJB.novo();
+        estado = new Estado(); //estadoEJB.novo();
     }  
     
     public String editar() {
@@ -60,8 +61,7 @@ public class EstadoMBean implements Serializable{
     public void pesquiar() {
         lstEstado = estadoEJB.pesquisar(valorPesquisa);
         
-    }
-    
+    }    
     
     public Estado getEstado() {
         return estado;

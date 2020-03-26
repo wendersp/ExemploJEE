@@ -23,7 +23,11 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Estado.findByNome", 
             query = "SELECT e FROM Estado e WHERE e.nome LIKE :nome "
+                    + "ORDER BY e.nome"),
+    @NamedQuery(name = "Estado.findBySigla", 
+            query = "SELECT e FROM Estado e WHERE e.sigla LIKE :sigla "
                     + "ORDER BY e.nome")
+        
 })
 public class Estado implements Serializable {
 
@@ -36,10 +40,10 @@ public class Estado implements Serializable {
     @Column(name = "sigla", length = 2, nullable = false, unique = true)
     private String sigla;
     
-    @Column(name = "data_cadastro", updatable = false)
+    @Column(name = "data_cadastro", insertable = true, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCadastro;
-    @Column(name = "data_alteracao", insertable = false)
+    @Column(name = "data_alteracao", insertable = false, updatable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataAlteracao;
 

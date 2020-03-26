@@ -20,7 +20,8 @@ public abstract class AbstractFacade<T> {
     protected abstract EntityManager getEntityManager();
 
     public void salvar(T entity) {
-        getEntityManager().merge(entity);       
+        getEntityManager().merge(entity);  
+        getEntityManager().flush();
     }
     
     public void excluir(T entity) {        
