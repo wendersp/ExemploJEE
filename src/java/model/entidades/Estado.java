@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
  * @author wender
  */
 @Entity
-@Table(name = "estado")
+@Table(name = "estado", schema = "exemplojee")
 @NamedQueries({
     @NamedQuery(name = "Estado.findByNome", 
             query = "SELECT e FROM Estado e WHERE e.nome LIKE :nome "
