@@ -35,8 +35,6 @@ public class EstadoFacade extends AbstractFacade<Estado> implements EstadoFacade
     @Override
     public void salvar(Estado estado) throws Exception {
         try {
-            estado.setDataAlteracao(new Date());
-            estado.setDataCadastro(new Date());
             super.salvar(estado);
         } catch (Exception ex) {
             throw new Exception("Erro ao salvar : " + ex.getMessage());

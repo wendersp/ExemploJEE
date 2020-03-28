@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -71,20 +73,23 @@ public class Estado implements Serializable {
         this.sigla = sigla;
     }
 
+    
     public Date getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    @PrePersist
+    private void setDataCadastro() {
+        this.dataCadastro = new Date();
     }
 
     public Date getDataAlteracao() {
         return dataAlteracao;
     }
 
-    public void setDataAlteracao(Date dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
+    @PreUpdate
+    private void setDataAlteracao() {
+        this.dataAlteracao = new Date();
     }
     
     

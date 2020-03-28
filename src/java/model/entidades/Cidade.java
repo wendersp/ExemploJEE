@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,11 +29,12 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "cidade", schema = "exemplojee")
 @NamedQueries({
-    @NamedQuery(name = "Cidade.findByNome", 
-            query = "SELECT c FROM Cidade c WHERE c.nome LIKE :nome"), 
-    @NamedQuery(name = "Cidade.findByEstado", 
+    @NamedQuery(name = "Cidade.findByNome",
+            query = "SELECT c FROM Cidade c WHERE c.nome LIKE :nome")
+    , 
+    @NamedQuery(name = "Cidade.findByEstado",
             query = "SELECT c FROM Cidade c WHERE c.estado = :estado")
-    
+
 })
 public class Cidade implements Serializable {
 
@@ -79,16 +82,18 @@ public class Cidade implements Serializable {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    @PrePersist
+    private void setDataCadastro() {
+        this.dataCadastro = new Date();
     }
 
     public Date getDataAlteracao() {
         return dataAlteracao;
     }
 
-    public void setDataAlteracao(Date dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
+    @PreUpdate
+    private void setDataAlteracao() {
+        this.dataAlteracao = new Date();
     }
 
     @Override
@@ -115,5 +120,5 @@ public class Cidade implements Serializable {
     public String toString() {
         return "entidades.Cidade[ id=" + id + " ]";
     }
-    
+
 }

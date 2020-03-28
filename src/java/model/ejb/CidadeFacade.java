@@ -39,9 +39,7 @@ public class CidadeFacade extends AbstractFacade<Cidade> implements CidadeFacade
 
     @Override
     public void salvar(Cidade cidade) throws Exception {
-        try {
-            cidade.setDataAlteracao(new Date());
-            cidade.setDataCadastro(new Date());
+        try {            
             super.salvar(cidade);
         } catch (Exception ex) {
             throw new Exception("Erro ao salvar : " + ex.getMessage());
