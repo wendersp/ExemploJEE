@@ -34,13 +34,16 @@ public class EstadoConverter implements Converter {
     }
 
     @Override
-    public Object getAsObject(FacesContext context, UIComponent component,
-            String value) {
-        estadoEJB = getSessionEJB();
-        if (value != null && value.trim().length() > 0) {
-            Long id = Long.parseLong(value);
-            Estado estado = (Estado) estadoEJB.pesquisar(id);
-            return estado;
+    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+        try {
+            estadoEJB = getSessionEJB();
+            if (value != null && value.trim().length() > 0) {
+                Long id = Long.parseLong(value);
+                Estado estado = (Estado) estadoEJB.pesquisar(id);
+                return estado;
+            }
+        } catch (Exception ex) {
+
         }
         return null;
     }

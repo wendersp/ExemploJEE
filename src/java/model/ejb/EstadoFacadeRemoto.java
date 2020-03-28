@@ -16,18 +16,18 @@ import model.entidades.Estado;
 @Remote
 public interface EstadoFacadeRemoto {
     
-    public void excluir(Estado estado);
+    public void excluir(Estado estado) throws Exception;
 
-    public List<Estado> listarTodos();
+    public List<Estado> listarTodos() throws Exception;
 
     public Estado novo();
 
-    public Estado pesquisar(Long id);
+    public Estado pesquisar(Long id) throws Exception;
 
-    public List<Estado> pesquisar(String param);
+    public List<Estado> pesquisar(String param) throws Exception;
 
-    public List<Estado> pesquisarPorSigla(String param);
+    public List<Estado> pesquisarPorSigla(String param) throws Exception;
 
-    public void salvar(Estado estado);
+    public void salvar(Estado estado) throws Exception;
     
 }

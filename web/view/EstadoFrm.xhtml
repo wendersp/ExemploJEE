@@ -16,15 +16,15 @@
             <h:messages/>
             <h:panelGrid columns="2">
                 <h:outputLabel value="Id"/>
-                <h:inputText id="iTxtId" size="10" value="#{estadoMB.estado.id}" readonly="true"/>
+                <h:inputText id="iTxtId" size="10" value="#{estadoMBean.estado.id}" readonly="true"/>
                 <h:outputLabel value="Nome" />
-                <h:inputText id="iTxtNome" size="50" maxlength="50" value="#{estadoMB.estado.nome}"/>
+                <h:inputText id="iTxtNome" size="50" maxlength="50" value="#{estadoMBean.estado.nome}"/>
                 <h:outputLabel value="Sigla" />
-                <h:inputText id="itxtSigla" size="2" maxlength="2" value="#{estadoMB.estado.sigla}"/>
+                <h:inputText id="itxtSigla" size="2" maxlength="2" value="#{estadoMBean.estado.sigla}"/>
             </h:panelGrid>
             <br/>
             <h:panelGrid columns="1">
-                <h:commandButton value="Salvar" action="#{estadoMB.salvar}"/>                
+                <h:commandButton value="Salvar" action="#{estadoMBean.salvar}"/>                
             </h:panelGrid>
 
         </h:form>        

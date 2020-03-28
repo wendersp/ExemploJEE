@@ -5,6 +5,7 @@
  */
 package controller;
 
+import controller.uteis.FacesUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ import model.entidades.Estado;
  *
  * @author wender
  */
-@Named(value = "cidadeMB")
+@Named(value = "cidadeMBean")
 @SessionScoped
 public class CidadeMBean implements Serializable {
 
@@ -47,33 +48,39 @@ public class CidadeMBean implements Serializable {
 
     @PostConstruct
     public void init() {
-       carregarListaEstados();
+        carregarListaEstados();
     }
-    
+
     public String novo() {
         this.cidade = new Cidade();
         return "CidadeFrm?faces-redirect=true";
     }
 
-    
     public void salvar() {
-        cidadeEJB.salvar(cidade);
-        cidade = cidadeEJB.novo();
-        carregarListaEstados();
+        try {
+            cidadeEJB.salvar(cidade);
+            cidade = cidadeEJB.novo();
+            carregarListaEstados();
+        } catch (Exception ex) {
+            FacesUtil.addErrorMessage(ex.getMessage());
+        }
     }
-    
+
     public String editar() {
         carregarListaEstados();
         return "CidadeFrm?faces-redirect=true";
     }
 
     private void carregarListaEstados() {
-        lstEstado = estadoEJB.listarTodos();
-        Estado estado = estadoEJB.pesquisar(1l);
-        System.out.println("Estado : " + estado.getNome());
+        try {
+            lstEstado = estadoEJB.listarTodos();
+            Estado estado = estadoEJB.pesquisar(1l);
+            System.out.println("Estado : " + estado.getNome());
+        } catch (Exception ex) {
+            FacesUtil.addErrorMessage(ex.getMessage());
+        }
     }
 
-    
     public String getValorPesquisa() {
         return valorPesquisa;
     }
@@ -83,11 +90,14 @@ public class CidadeMBean implements Serializable {
     }
 
     public void pesquiar() {
-        lstCidade = cidadeEJB.pesquisar(valorPesquisa);
+        try {
+            lstCidade = cidadeEJB.pesquisar(valorPesquisa);
+        } catch (Exception ex) {
+            FacesUtil.addErrorMessage(ex.getMessage());
+        }
 
     }
-    
-    
+
     public Cidade getCidade() {
         return cidade;
     }

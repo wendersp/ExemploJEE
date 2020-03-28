@@ -1,4 +1,3 @@
-
 package model.ejb;
 
 import java.util.Date;
@@ -34,42 +33,66 @@ public class EstadoFacade extends AbstractFacade<Estado> implements EstadoFacade
     }
 
     @Override
-    public void salvar(Estado estado) {
-        estado.setDataAlteracao(new Date());
-        estado.setDataCadastro(new Date());
-        super.salvar(estado);
+    public void salvar(Estado estado) throws Exception {
+        try {
+            estado.setDataAlteracao(new Date());
+            estado.setDataCadastro(new Date());
+            super.salvar(estado);
+        } catch (Exception ex) {
+            throw new Exception("Erro ao salvar : " + ex.getMessage());
+        }
     }
 
     @Override
-    public void excluir(Estado estado) {
-        super.excluir((Estado)super.pesquisarPorId(estado.getId()));        
+    public void excluir(Estado estado) throws Exception {
+        try {
+            super.excluir((Estado) super.pesquisarPorId(estado.getId()));
+        } catch (Exception ex) {
+            throw new Exception("Erro ao excluir : " + ex.getMessage());
+        }
     }
 
     @Override
-    public Estado pesquisar(Long id) {
-        return (Estado) super.pesquisarPorId(id);
+    public Estado pesquisar(Long id) throws Exception {
+        try {
+            return (Estado) super.pesquisarPorId(id);
+        } catch (Exception ex) {
+            throw new Exception("Erro ao pesquisar : " + ex.getMessage());
+        }
     }
 
     @Override
-    public List<Estado> pesquisar(String param) {        
-        List<Estado> lstEstado;
-        Query consulta = em.createNamedQuery("Estado.findByNome");
-        consulta.setParameter("nome", param + "%");
-        lstEstado = consulta.getResultList();        
-        return lstEstado;
+    public List<Estado> pesquisar(String param) throws Exception {
+        try {
+            List<Estado> lstEstado;
+            Query consulta = em.createNamedQuery("Estado.findByNome");
+            consulta.setParameter("nome", param + "%");
+            lstEstado = consulta.getResultList();
+            return lstEstado;
+        } catch (Exception ex) {
+            throw new Exception("Erro ao pesquisar : " + ex.getMessage());
+        }
     }
 
     @Override
-    public List<Estado> pesquisarPorSigla(String param) {
-        List<Estado> lstEstado;
-        Query consulta = em.createNamedQuery("Estado.findBySigla");
-        consulta.setParameter("nome", param + "%");
-        lstEstado = consulta.getResultList();
-        return lstEstado;
+    public List<Estado> pesquisarPorSigla(String param) throws Exception {
+        try {
+            List<Estado> lstEstado;
+            Query consulta = em.createNamedQuery("Estado.findBySigla");
+            consulta.setParameter("nome", param + "%");
+            lstEstado = consulta.getResultList();
+            return lstEstado;
+        } catch (Exception ex) {
+            throw new Exception("Erro ao pesquisar : " + ex.getMessage());
+        }
     }
 
     @Override
-    public List<Estado> listarTodos() {
-        return super.listarTodos();
+    public List<Estado> listarTodos() throws Exception {
+        try {
+            return super.listarTodos();
+        } catch (Exception ex) {
+            throw new Exception("Erro ao pesquisar : " + ex.getMessage());
+        }
     }
 }

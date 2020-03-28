@@ -19,20 +19,20 @@ public abstract class AbstractFacade<T> {
 
     protected abstract EntityManager getEntityManager();
 
-    public void salvar(T entity) {
+    public void salvar(T entity) throws Exception {
         getEntityManager().merge(entity);  
         getEntityManager().flush();
     }
     
-    public void excluir(T entity) {        
+    public void excluir(T entity) throws Exception {        
         getEntityManager().remove(entity);
     }
     
-    public Object pesquisarPorId(Long id) {
+    public Object pesquisarPorId(Long id) throws Exception {
         return getEntityManager().find(entityClass, id);        
     }
     
-    public List<T> listarTodos() {
+    public List<T> listarTodos() throws Exception {
         javax.persistence.criteria.CriteriaQuery cq = 
                 getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));               

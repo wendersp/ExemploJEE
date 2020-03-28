@@ -17,15 +17,15 @@
             <h:messages/>
             <h:panelGrid columns="2">
                 <h:outputLabel value="Nome" />
-                <h:inputText id="iTxtNome" size="50" maxlength="50" value="#{cidadeMB.cidade.nome}"/>
+                <h:inputText id="iTxtNome" size="50" maxlength="50" value="#{cidadeMBean.cidade.nome}"/>
                 <h:outputLabel value="Estado" />
-                <h:selectOneMenu id="sMnEstado" value="#{cidadeMB.cidade.estado}" converter="estadoConverter">                    
-                    <f:selectItems value="#{cidadeMB.lstEstado}" var="estado" itemLabel="#{estado.nome}" itemValue="#{estado}" />                    
+                <h:selectOneMenu id="sMnEstado" value="#{cidadeMBean.cidade.estado}" converter="estadoConverter">                    
+                    <f:selectItems value="#{cidadeMBean.lstEstado}" var="estado" itemLabel="#{estado.nome}" itemValue="#{estado}" />                    
                 </h:selectOneMenu>
             </h:panelGrid>
             <br/>
             <h:panelGrid columns="1">
-                <h:commandButton value="Salvar" action="#{cidadeMB.salvar}"/>                
+                <h:commandButton value="Salvar" action="#{cidadeMBean.salvar}"/>                
             </h:panelGrid>
 
         </h:form>        

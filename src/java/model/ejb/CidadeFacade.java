@@ -26,8 +26,6 @@ public class CidadeFacade extends AbstractFacade<Cidade> implements CidadeFacade
     public CidadeFacade() {
         super(Cidade.class);
     }
-    
- 
 
     @Override
     public Cidade novo() {
@@ -40,34 +38,53 @@ public class CidadeFacade extends AbstractFacade<Cidade> implements CidadeFacade
     }
 
     @Override
-    public void salvar(Cidade cidade) {
-        cidade.setDataAlteracao(new Date());
-        cidade.setDataCadastro(new Date());
-        super.salvar(cidade);
+    public void salvar(Cidade cidade) throws Exception {
+        try {
+            cidade.setDataAlteracao(new Date());
+            cidade.setDataCadastro(new Date());
+            super.salvar(cidade);
+        } catch (Exception ex) {
+            throw new Exception("Erro ao salvar : " + ex.getMessage());
+        }
     }
 
     @Override
-    public void excluir(Cidade cidade) {
-        super.excluir(cidade);
+    public void excluir(Cidade cidade) throws Exception {
+        try {
+            super.excluir(cidade);
+        } catch (Exception ex) {
+            throw new Exception("Erro ao excluir : " + ex.getMessage());
+        }
     }
 
     @Override
-    public Cidade pesquisar(Long id) {
-        return (Cidade) super.pesquisarPorId(id);
+    public Cidade pesquisar(Long id) throws Exception {
+        try {
+            return (Cidade) super.pesquisarPorId(id);
+        } catch (Exception ex) {
+            throw new Exception("Erro ao pesquisar : " + ex.getMessage());
+        }
     }
 
     @Override
-    public List<Cidade> pesquisar(String param) {        
-        List<Cidade> lstCidade;
-        Query consulta = em.createNamedQuery("Cidade.findByNome");
-        consulta.setParameter("nome", param + "%");
-        lstCidade = consulta.getResultList();
-        return lstCidade;
+    public List<Cidade> pesquisar(String param) throws Exception {
+        try {
+            List<Cidade> lstCidade;
+            Query consulta = em.createNamedQuery("Cidade.findByNome");
+            consulta.setParameter("nome", param + "%");
+            lstCidade = consulta.getResultList();
+            return lstCidade;
+        } catch (Exception ex) {
+            throw new Exception("Erro ao pesquisar : " + ex.getMessage());
+        }
     }
 
-    
     @Override
-    public List<Cidade> listarTodos() {
-        return super.listarTodos();
+    public List<Cidade> listarTodos() throws Exception {
+        try {
+            return super.listarTodos();
+        } catch (Exception ex) {
+            throw new Exception("Erro ao pesquisar : " + ex.getMessage());
+        }
     }
 }

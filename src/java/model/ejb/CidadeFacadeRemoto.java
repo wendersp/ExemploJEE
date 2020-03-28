@@ -16,16 +16,16 @@ import model.entidades.Cidade;
 @Remote
 public interface CidadeFacadeRemoto {
 
-    public void excluir(Cidade cidade);
+    public void excluir(Cidade cidade) throws Exception;
 
-    public List<Cidade> listarTodos();
+    public List<Cidade> listarTodos() throws Exception;
 
     public Cidade novo();
 
-    public Cidade pesquisar(Long id);
+    public Cidade pesquisar(Long id) throws Exception;
 
-    public List<Cidade> pesquisar(String param);
+    public List<Cidade> pesquisar(String param) throws Exception;
 
-    void salvar(Cidade cidade);
+    public void salvar(Cidade cidade) throws Exception;
     
 }

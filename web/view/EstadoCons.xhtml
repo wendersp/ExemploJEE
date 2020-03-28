@@ -13,19 +13,19 @@
             <h1>Pesquisar Estado</h1>
             
             <h:panelGrid columns="2" >
-                <h:commandLink value="Novo" action="#{estadoMB.novo()}" immediate="true"/>
+                <h:commandLink value="Novo" action="#{estadoMBean.novo()}" immediate="true"/>
             </h:panelGrid>
             <br/>
             <h:messages/>
             <h:panelGrid columns="3">                
                 <h:outputLabel value="Nome: "/>
-                <h:inputText id="iTxtParametro" size="50" value="#{estadoMB.valorPesquisa}"/>
-                <h:commandButton id="cBntPesquisar" value="Pesquisar" action="#{estadoMB.pesquiar()}" />
+                <h:inputText id="iTxtParametro" size="50" value="#{estadoMBean.valorPesquisa}"/>
+                <h:commandButton id="cBntPesquisar" value="Pesquisar" action="#{estadoMBean.pesquiar()}" />
             </h:panelGrid>
             <br/>
             <h:panelGrid columns="1">                
                 <h:dataTable id="dTableEstado" border="1" rows="10" 
-                             value="#{estadoMB.lstEstado}" var="estado"
+                             value="#{estadoMBean.lstEstado}" var="estado"
                              styleClass="my-table"
                              headerClass="my-table-header"
                              rowClasses="my-table-odd-row,my-table-even-row">
@@ -67,11 +67,11 @@
                         <f:facet name="header">
                             <h:outputText value="Ações" />                            
                         </f:facet>
-                        <h:commandButton id="cBtnEditar" value="Editar" action="#{estadoMB.editar}" >
-                            <f:setPropertyActionListener value="#{estado}" target="#{estadoMB.estado}"/>
+                        <h:commandButton id="cBtnEditar" value="Editar" action="#{estadoMBean.editar}" >
+                            <f:setPropertyActionListener value="#{estado}" target="#{estadoMBean.estado}"/>
                         </h:commandButton>
-                        <h:commandButton id="cBtnExcluir" value="Excluir" action="#{estadoMB.excluir}" onclick="return confirm('Confirma ?');" >                           
-                            <f:setPropertyActionListener value="#{estado}" target="#{estadoMB.estado}"/>                           
+                        <h:commandButton id="cBtnExcluir" value="Excluir" action="#{estadoMBean.excluir}" onclick="return confirm('Confirma ?');" >                           
+                            <f:setPropertyActionListener value="#{estado}" target="#{estadoMBean.estado}"/>                           
                         </h:commandButton>   
                     </h:column>
                 </h:dataTable> 
